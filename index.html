@@ -1,0 +1,201 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Happy Birthday MY best Friend Tabu!</title>
+    <style>
+        body {
+            margin: 0;
+            padding: 0;
+            background: linear-gradient(135deg, #ff9a9e, #fad0c4, #fbc2eb);
+            color: #fff;
+            font-family: 'Arial', sans-serif;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            text-align: center;
+            overflow: hidden;
+            position: relative;
+        }
+
+        h1 {
+            font-size: 4em;
+            margin: 0;
+            animation: fadeIn 3s ease-in-out;
+        }
+
+        p {
+            font-size: 1.5em;
+            margin-top: 20px;
+            animation: fadeIn 5s ease-in-out;
+        }
+
+        @keyframes fadeIn {
+            0% { opacity: 0; transform: translateY(20px); }
+            100% { opacity: 1; transform: translateY(0); }
+        }
+
+        .popup {
+            display: none;
+            position: fixed;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            background-color: #fff;
+            color: #333;
+            padding: 30px;
+            box-shadow: 0px 0px 15px rgba(0, 0, 0, 0.3);
+            border-radius: 10px;
+            z-index: 1000;
+            text-align: center;
+        }
+
+        .popup h2 {
+            margin-bottom: 20px;
+            color: #ff4d6d;
+        }
+
+        .popup button {
+            padding: 10px 20px;
+            margin: 10px;
+            font-size: 1.2em;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            transition: background-color 0.3s ease;
+        }
+
+        .popup button.yes {
+            background-color: #ff6b81;
+            color: white;
+        }
+
+        .popup button.forever {
+            background-color: #ff4757;
+            color: white;
+        }
+
+        .popup button:hover {
+            background-color: #e84118;
+        }
+
+        .heart {
+            position: absolute;
+            animation: float 6s infinite ease-in-out;
+            top: 30%;
+            left: 50%;
+            transform: translateX(-50%);
+        }
+
+        @keyframes float {
+            0% { transform: translateY(0); }
+            50% { transform: translateY(-20px); }
+            100% { transform: translateY(0); }
+        }
+
+        .message {
+            display: none;
+            animation: fadeIn 2s ease-in-out;
+            font-size: 2em;
+            margin-top: 20px;
+            color: #fff;
+        }
+
+        .love-message {
+            font-size: 1.5em;
+            margin-top: 30px;
+            color: #ffebeb;
+        }
+
+        .heart::before, .heart::after {
+            content: "";
+            position: absolute;
+            width: 50px;
+            height: 80px;
+            background: red;
+            border-radius: 50px 50px 0 0;
+        }
+
+        .heart::before {
+            left: 50px;
+            transform: rotate(-45deg);
+        }
+
+        .heart::after {
+            left: 0;
+            transform: rotate(45deg);
+        }
+
+    </style>
+</head>
+<body>
+    <div>
+        <h1>Happy Birthday My Best Friend Tabu! 🎉</h1>
+        <p>Wishing you a day filled with joy, laughter, and friendship! 🎈</p>
+        <div class="heart"></div>
+    </div>
+
+    <!-- Popup Box -->
+    <div class="popup" id="popup">
+        <h2>Will You Be My Best Friend Forever? 💖</h2>
+        <button class="yes" onclick="showMessage('You are an amazing friend! Forever besties! 👫')">Yes</button>
+        <button class="forever" onclick="showMessage('Together, forever! Friends for life! 💫')">Forever</button>
+    </div>
+
+    <!-- Message Display -->
+    <div class="message" id="message"></div>
+
+    <div class="love-message" id="love-message">
+        <p>You are the best friend anyone could ask for. Always together, always laughing! 😄</p>
+    </div>
+
+    <script>
+        // Show popup after 3 seconds
+        setTimeout(() => {
+            document.getElementById('popup').style.display = 'block';
+        }, 3000);
+
+        // Function to show message
+        function showMessage(text) {
+            document.getElementById('popup').style.display = 'none';
+            const messageDiv = document.getElementById('message');
+            messageDiv.innerHTML = text;
+            messageDiv.style.display = 'block';
+
+            // Show love message
+            const loveMessage = document.getElementById('love-message');
+            loveMessage.style.display = 'block';
+
+            // Trigger falling hearts
+            generateHearts();
+        }
+
+        // Generate falling hearts on click
+        function generateHearts() {
+            for (let i = 0; i < 10; i++) {
+                let heart = document.createElement('div');
+                heart.style.position = 'absolute';
+                heart.style.left = Math.random() * 100 + 'vw';
+                heart.style.top = Math.random() * 100 + 'vh';
+                heart.style.animation = 'fall 3s linear infinite';
+                heart.style.fontSize = '2em';
+                heart.style.color = 'red';
+                heart.innerHTML = '❤️';
+                document.body.appendChild(heart);
+            }
+        }
+
+        // Falling heart animation
+        let style = document.createElement('style');
+        style.innerHTML = `
+            @keyframes fall {
+                0% { transform: translateY(-10px); opacity: 1; }
+                100% { transform: translateY(100vh); opacity: 0; }
+            }
+        `;
+        document.head.appendChild(style);
+    </script>
+</body>
+</html>
